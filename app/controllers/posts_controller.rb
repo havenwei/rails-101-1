@@ -29,8 +29,14 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to account_posts_path, notic: 'Update Success'
     else
-      render :edit  
+      render :edit
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to account_posts_path, alert: 'Post deleted'
   end
 
   private
